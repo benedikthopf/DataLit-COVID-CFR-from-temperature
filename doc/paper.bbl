@@ -1,0 +1,17 @@
+\begin{thebibliography}{1}
+
+\bibitem{rki_2022}
+Robert~Koch Institut.
+\newblock Robert koch institut covid-19 data.
+\newblock
+  \url{https://www.arcgis.com/sharing/rest/content/items/f10774f1c63e40168479a1feb6c7ca74/data},
+  Jan 2022.
+
+\bibitem{dwd_2022}
+Deutscher Wetterdienst.
+\newblock Deutscher wetterdienst daten.
+\newblock
+  \url{https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/},
+  Jan 2022.
+
+\end{thebibliography}
