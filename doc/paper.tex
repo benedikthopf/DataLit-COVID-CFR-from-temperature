@@ -117,15 +117,15 @@ The model was then trained using \texttt{scipy.optimize}'s \texttt{minimize} rou
 
 Since the model is designed in such a way, that it cannot capture the beginning of a pandemic (as case fatality rate most be monotonic as a function of time), the model has only been trained starting from the peak of the first wave and should only be evaluated from there. The time before that is shown in the plot, but marked as before the beginning. 
 
-Another way to evaluate the model and see, where it has some problems, is to plot a heatmap of case fatality rate given temperature and date. This map cannot be completely covered by actual data, since some values are never attained (like $30^\circ C$ in January). Then these parts are then filled with predictions, where the goal is, that the difference between actual values and predictions are hard to distinguish. This result can be seen in figure \ref{fig:heatmap}. One can see, that the model does quite well, however different temperatures within one month are hardly different in reality, which the model does not predict quite as much. This makes sense, since for example even a relatively warm winter day will not attract as many people outside as a cold spring day (with the same temperatuer) might, since it is simply not as nice outside.
+% Another way to evaluate the model and see, where it has some problems, is to plot a heatmap of case fatality rate given temperature and date. This map cannot be completely covered by actual data, since some values are never attained (like $30^\circ C$ in January). Then these parts are then filled with predictions, where the goal is, that the difference between actual values and predictions are hard to distinguish. This result can be seen in figure \ref{fig:heatmap}. One can see, that the model does quite well, however different temperatures within one month are hardly different in reality, which the model does not predict quite as much. This makes sense, since for example even a relatively warm winter day will not attract as many people outside as a cold spring day (with the same temperatuer) might, since it is simply not as nice outside.
 
-\begin{figure}[hbt!]
-  \begin{center}
-    \includegraphics{../fig/heatmap.pdf}
-    \caption{Heatmap of case fatality rate. x and y axis denote date and temperature respectively. The color of each square denotes the average case fatality rate under these circumstances. The actual attained values are plotted on to and marked with a faint cross. Everything that is not marked with a cross is an estimate by the model. The goal here is to be able to 'hide' the actual data well in the prediction, which is achieved reasonably well.}
-    \label{fig:heatmap}
-  \end{center}
-\end{figure}
+% \begin{figure}[hbt!]
+%   \begin{center}
+%     \includegraphics{../fig/heatmap.pdf}
+%     \caption{Heatmap of case fatality rate. x and y axis denote date and temperature respectively. The color of each square denotes the average case fatality rate under these circumstances. The actual attained values are plotted on to and marked with a faint cross. Everything that is not marked with a cross is an estimate by the model. The goal here is to be able to 'hide' the actual data well in the prediction, which is achieved reasonably well.}
+%     \label{fig:heatmap}
+%   \end{center}
+% \end{figure}
 
 \section{Scenario simulation}
 

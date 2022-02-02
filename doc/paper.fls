@@ -184,9 +184,6 @@ INPUT ../fig/prediction.pdf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmr8c.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/vf/adobe/times/ptmri8t.vf
 INPUT /usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmri8r.tfm
-INPUT /home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/../fig/heatmap.pdf
-INPUT ../fig/heatmap.pdf
-INPUT ../fig/heatmap.pdf
 INPUT /home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/../fig/CfrTimeseries.pdf
 INPUT ../fig/CfrTimeseries.pdf
 INPUT ../fig/CfrTimeseries.pdf
