@@ -57,28 +57,27 @@
 \section{Introduction}
 \label{sec:introduction}
 
-The pandemic caused by SARS-CoV-2 and the accompanying disease COVID-19 are clearly one of if not the largest worldwide crisis since the second world war. The virus originated in Wuhan, China in late 2019 and then quickly spread over the entrire world, reaching Germany on January 2nd 2020 for the first time. The first wave then followed in March 2020~\cite{rki_2022}.  
+The pandemic caused by SARS-CoV-2 and the accompanying disease COVID-19 is clearly one of if not the largest worldwide crisis since the second world war. The virus originated in Wuhan, China in late 2019 and then quickly spread over the entrire world, with the first infection in Germany recorded by the RKI on January 2nd 2020. The first wave then followed in March 2020~\cite{rki_2022}.  
 
-Obviously the development of a pandemic depends on many factors, but a recurring theme seems to be, that cases and case fatality rates are lower in summer, most likely due to higher temperatures. Therefore people spend more time outside where aerosole transmission is harder, and as such fewer people get infected. And the ones that do do not get quite as sick, as the dose of virus the recieved was smaller. This is a similar effect as the wearing of masks and as such very resonable.
-% TODO: add citation for this claim
+Obviously the development of a pandemic depends on many factors, but a recurring theme seems to be, that cases and case fatality rates are lower in summer, most likely due to higher temperatures. Therefore people spend more time outside where aerosole transmission is harder, and as such fewer people get infected. And the ones that do do not get quite as sick, as the dose of virus they recieved is smaller. Pujadas et al.~\cite{pujadas_chaudhry_mcbride_richter_zhao_wajnberg_nadkarni_glicksberg_houldsworth_cordon-cardo_et_al._2020} showed, that viral load in the blood is an indictor for the risk of death.
 
 So in this work we will see, how well case fatality rate can be predicted from outside temperature and the time passed since the first outbreak, since this also seems to lower case fatality rate. We will not look at the number of infections, since this is highly dependent on political measures like lockdowns and as such very hard to model. 
 
 \section{About the data}
 
-For this task two sources of data have been used: For one this is the official German COVID-19~\cite{rki_2022} data as probided by the Robert Koch Institute, which is the German autority that is officially responsible for tracking the pandemic, backed by the German Bundesministerium für Gesundheit (federal Ministry for health). The data is supplied as a \texttt{csv}-file. The temperature data~\cite{dwd_2022} for Germany has been retrieved from the Deutscher Wetterdienst (German weather service), which is the official autority for weather in Germany, backed by the German Bundesministerium für Digitales und Verkehr (federak Ministry of digital matters and health). The data is supplied as several \texttt{zip}-files containing \texttt{csv}-files, that have been combined into one dataset.
+For this task two sources of data have been used: For one this is the official German COVID-19~\cite{rki_2022} data as probided by the Robert Koch Institute, which is the German autority that is officially responsible for tracking the pandemic, backed by the German Bundesministerium für Gesundheit (federal Ministry for health). The data is supplied as a \texttt{csv}-file. The temperature data~\cite{dwd_2022} for Germany has been retrieved from the Deutscher Wetterdienst (German weather service), which is the official autority for weather in Germany, backed by the German Bundesministerium für Digitales und Verkehr (federal Ministry of digital matters and health). The data is supplied as several \texttt{zip}-files containing \texttt{csv}-files, that have been combined into one dataset.
 
 Looking at the two datasets (case fatality rate and air temperature) next to each other it is immediately obvious, that there seems to be a negative correlytion between them. High temperatures go with lower case fatality rates and vice versa. A possible explanation for this has already been given in section \ref{sec:introduction}. Another thing to note, is that the case fatality rate is generally decreasing, which is likely due to medical advances and increasing immunity in the population.
 
 \section{Modelling case fatality rate}
 \label{sec:modelling}
 
-This section will discuss the model choice and provide some plots, that demonstrate model performance.
+This section will discuss the model choice and provide a plot, that demonstrate model performance.
 
 \subsection{The model}
 
 As the model for this problem, a multiplicative model of an exponential and a sigmoid as been chosen: \begin{equation}
-  a \cdot e^{b \cdot (t - \Delta)} \cdot \sigma \left( c \cdot (\vartheta - d) \right) \in \mathbb{R}
+  a \cdot e^{b \cdot (t - \Delta)} \cdot \sigma \left( c \cdot (\vartheta - d) \right) 
 \end{equation} where \begin{itemize}
   \item $t$ is the time since the first case in days.
   \item $\vartheta$ is the outside air temperature in $^\circ C$.
@@ -90,17 +89,14 @@ As the model for this problem, a multiplicative model of an exponential and a si
   \item $\Delta$ is the day of the peak of the case fatality rate during the first wave.
 \end{itemize}
 
-Note, that $\Delta$ is mathematically unnecessary as it can be completely absorbed in $a$, and only serves to \textit{center} the at a fixed location and thus make the parameters more interpretable. $t$ and $\vartheta$ are the inputs, $a, b, c, d$ are learned and $\Delta$ is fixed.
+Note, that $\Delta$ is mathematically unnecessary as it can be completely absorbed in $a$, and only serves to shift the data to a fixed location and thus make the parameters more interpretable. $t$ and $\vartheta$ are the inputs, $a, b, c, d$ are learned and $\Delta$ is fixed.
 
 This model has several advantages, compared to a simple linear model like \begin{equation}
   a \cdot t + b \cdot \vartheta + c.
 \end{equation}
 These advantagees are in the range of the inputs and the result. Case fatality rate is a metric that cannot become smaller than 0, which a linear model could. 
-
 Also the reason to include the temperature is, that it is assumed to be a measure of how much time people spend outside. This is a metric, that can attain values in $[0, 1]$ and neither more nor less. When it gets warm in summer at maximum all people can be outside at all times and never more. The same hold on the other side in winter. 
-
 Time is included, as it can measure medical progress, which makes sense to be quite quick in the beginning and then becoming slower over time, as there are less undiscovered easy improvements. So an exponential fits that shape.
-
 Finally a multiplicative model makes more sense than an additive on, since the assumption is, that good enough medical advancements can eventually counteract temperature variations completely and high temperatures make, that medical help is not as necessary, which cannot be represented by a additive model. In a multiplicative model one of the factors becoming (close to) 0, results in the entire output being (close to) 0.
 
 \subsection{Training and basic evaluation}
@@ -113,9 +109,9 @@ The model was then trained using \texttt{scipy.optimize}'s \texttt{minimize} rou
     \caption{Actual case fatality rate and predicted case fatality rate plotted againt time. The smoothed line has been created by averaging over 14 days.}
     \label{fig:prediction}
   \end{center}
-\end{figure}
+\end{figure} 
 
-Since the model is designed in such a way, that it cannot capture the beginning of a pandemic (as case fatality rate most be monotonic as a function of time), the model has only been trained starting from the peak of the first wave and should only be evaluated from there. The time before that is shown in the plot, but marked as before the beginning. 
+Since the model is designed in such a way, that it cannot capture the beginning of a pandemic (as case fatality rate must be monotonic as a function of time), the model has only been trained starting from the peak of the first wave and should only be evaluated from there. The time before that is shown in the plot, but marked as before the beginning. 
 
 % Another way to evaluate the model and see, where it has some problems, is to plot a heatmap of case fatality rate given temperature and date. This map cannot be completely covered by actual data, since some values are never attained (like $30^\circ C$ in January). Then these parts are then filled with predictions, where the goal is, that the difference between actual values and predictions are hard to distinguish. This result can be seen in figure \ref{fig:heatmap}. One can see, that the model does quite well, however different temperatures within one month are hardly different in reality, which the model does not predict quite as much. This makes sense, since for example even a relatively warm winter day will not attract as many people outside as a cold spring day (with the same temperatuer) might, since it is simply not as nice outside.
 
@@ -129,14 +125,14 @@ Since the model is designed in such a way, that it cannot capture the beginning 
 
 \section{Scenario simulation}
 
-Now, that we have seen, that the model works decently well on data, that we know the right answer to, we can start with the actual interesting part of predicting, what would have happende, had the pandemic arrived in Germany at a different time. 
+Now, that we have seen, that the model works decently well on data, that we know the right answer to, we can start with the actual interesting part of predicting, what would have happened, had the pandemic arrived in Germany at a different time. 
 
 A scenario like this has been calculated for every month for one year before the actual outbreak and is shown in figure \ref{fig:cfr_timeseries}. One can see, that most curves peak much higher, which makes sense, since the actual pandemic was relatively quickly slowed down by the coming summer, which helped a lot at a time, where the pandemic was still very young. A more qualitative statement about that can be seen in figure \ref{fig:max_mean_cfr}. 
 
 \begin{figure}[hbt!]
   \begin{center}
     \includegraphics{../fig/CfrTimeseries.pdf}
-    \caption{Predicted scenarios for outbreak (relative to the peak of the actual first wave) up to one year before April 2020. The actual case fatality rate is shown in black. The predictions colorcoded by the season, their beginning falls into.}
+    \caption{Predicted scenarios for outbreak (relative to the peak of the actual first wave) up to one year before April 2020. The actual case fatality rate is shown in black. The predictions are colorcoded by the season, their beginning falls into.}
     \label{fig:cfr_timeseries}
   \end{center}
 \end{figure}
@@ -144,7 +140,7 @@ A scenario like this has been calculated for every month for one year before the
 \begin{figure}[hbt!]
   \begin{center}
     \includegraphics{../fig/MaxMeanCfr.pdf}
-    \caption{Maximum and mean case fatality rate as a function of the time of outbereak}
+    \caption{Maximum and mean case fatality rate as a function of the time of outbereak. The actual values of these quantities are shown as horizontal lines.}
     \label{fig:max_mean_cfr}
   \end{center}
 \end{figure}
