@@ -1,19 +1,19 @@
 # Fdb version 3
-["bibtex paper"] 1643905192 "paper.aux" "paper.bbl" "paper" 1643905193
+["bibtex paper"] 1643905192 "paper.aux" "paper.bbl" "paper" 1643906708
   "/usr/share/texlive/texmf-dist/bibtex/bst/base/plain.bst" 1292289607 20613 bd3fbfa9f64872b81ac57a0dd2ed855f ""
   "citations.bib" 1643904231 1217 a7bb94b01528a31b0b20d597c71c3127 ""
   "paper.aux" 1643905192 3765 4c0e93878e0d5048ff21a2de94a57f54 "pdflatex"
   (generated)
-  "paper.bbl"
   "paper.blg"
-["pdflatex"] 1643905192 "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.tex" "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.pdf" "paper" 1643905193
+  "paper.bbl"
+["pdflatex"] 1643905192 "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.tex" "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.pdf" "paper" 1643906708
   "../fig/CfrTimeseries.pdf" 1643901698 52491 df5fe3e17f84dbb8b4f800f8d1d84982 ""
   "../fig/MaxMeanCfr.pdf" 1643901736 14128 c0b3b6b66eda6d597412503eed337f92 ""
   "../fig/prediction.pdf" 1643647098 28383 4192f89e7843fe7a51108101733e849c ""
   "/etc/texmf/web2c/texmf.cnf" 1613312371 475 c0e671620eb5563b2130f56340a5fde8 ""
   "/home/benedikthopf/.texlive2019/texmf-var/fonts/pk/ljfour/jknappen/ec/ectt1000.600pk" 1617878060 20008 1e2163b081edf1636888451a4a1ac653 ""
   "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.aux" 1643905192 3765 4c0e93878e0d5048ff21a2de94a57f54 ""
-  "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.tex" 1643905191 13823 78496cbdf92d6b87bc4b3bf1448bfccd ""
+  "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.tex" 1643906707 13823 78496cbdf92d6b87bc4b3bf1448bfccd ""
   "/usr/share/texlive/texmf-dist/fonts/enc/dvips/base/8r.enc" 1165713224 4850 80dc9bab7f31fb78a000ccfed0e27cab ""
   "/usr/share/texlive/texmf-dist/fonts/map/fontname/texfonts.map" 1577235249 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "/usr/share/texlive/texmf-dist/fonts/tfm/adobe/times/ptmb8r.tfm" 1136768653 4524 6bce29db5bc272ba5f332261583fee9c ""
@@ -117,11 +117,11 @@
   "paper.aux" 1643905192 3765 4c0e93878e0d5048ff21a2de94a57f54 "pdflatex"
   "paper.bbl" 1643905192 953 c5183afc5b16eeecbc90630b6b6a2759 "bibtex paper"
   "paper.out" 1643905192 436 7cd79550c57e96814d8ef8f750e76fe8 "pdflatex"
-  "paper.tex" 1643905191 13823 78496cbdf92d6b87bc4b3bf1448bfccd ""
+  "paper.tex" 1643906707 13823 78496cbdf92d6b87bc4b3bf1448bfccd ""
   (generated)
-  "paper.out"
   "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.pdf"
-  "paper.aux"
-  "paper.pdf"
   "/home/benedikthopf/Dokumente/7. Semester/DataLiteracy/project/BenediktHopf_CoronaCaseFatalityRateByTemperature/doc/paper.log"
+  "paper.pdf"
   "paper.log"
+  "paper.out"
+  "paper.aux"
