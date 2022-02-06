@@ -2,6 +2,17 @@
 
 This repository contains the python files, that have been used to predict COVID-19 case fatality rate from outside air temperature. The explanation is located in `doc/paper.pdf`. 
 
+Running these notebooks requires [`Python 3`](https://www.python.org/) and [`Jupyter`](https://jupyter.org/) as well as the following libraries:
+
+ - [`numpy`](https://numpy.org/)
+ - [`scipy`](https://scipy.org/)
+ - [`pandas`](https://pandas.pydata.org/)
+ - [`matplotlib`](https://matplotlib.org/)
+ - [`tueplots`](https://pypi.org/project/tueplots/)
+ - [`tqdm`](https://pypi.org/project/tqdm/)
+ - [`beutifulsoup4`](https://pypi.org/project/beautifulsoup4/)
+ - [`scikit-learn`](https://scikit-learn.org/stable/index.html) (for experiments only)
+
 
 One plot that did not make it into the text, due to the page limit: ![heatmap](fig/heatmap.png)
 
