@@ -3,7 +3,7 @@ import numpy as np
 from scipy.optimize import minimize
 np.random.seed(42)
 
-heatmap_colormap = matplotlib.colors.LinearSegmentedColormap.from_list("mycolormap",
+heatmap_colormap = matplotlib.colors.LinearSegmentedColormap.from_list("heatmap",
     [
         (0 ,"#fdf094"), 
         (0.2, "#f4cc00"),
@@ -14,7 +14,7 @@ heatmap_colormap = matplotlib.colors.LinearSegmentedColormap.from_list("mycolorm
     ]
 )
 
-season_colormap = matplotlib.colors.LinearSegmentedColormap.from_list("mycolormap",
+season_colormap = matplotlib.colors.LinearSegmentedColormap.from_list("seasons",
     [
         (0/4 ,"#3399ff"), 
         (3/12, "#66ff66"),
