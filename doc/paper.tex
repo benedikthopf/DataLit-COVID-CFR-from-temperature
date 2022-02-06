@@ -50,14 +50,14 @@
 
 \begin{abstract}
 
-  In this project I use \href{https://www.arcgis.com/sharing/rest/content/items/f10774f1c63e40168479a1feb6c7ca74/data}{German COVID-19 data} from the \href{https://www.rki.de/DE/Home/homepage_node.html}{RKI (Robert Koch Institut)} together with \href{https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/}{German Weather Data}, provided by the \href{https://www.dwd.de/DE/Home/home_node.html}{Deutscher Wetterdienst (German Weather Service)}, to predict the COVID-19 case fatality rate using outside air temperature and time since outbreak. I use a simple custom model to recreate the actual numbers and show, that COVID-19 in Germany might have been much worse, had the breakout been a couple of months earlier.
+  In this project \href{https://www.arcgis.com/sharing/rest/content/items/f10774f1c63e40168479a1feb6c7ca74/data}{German COVID-19 data} from the \href{https://www.rki.de/DE/Home/homepage_node.html}{RKI (Robert Koch Institut)} together with \href{https://opendata.dwd.de/climate_environment/CDC/observations_germany/climate/hourly/air_temperature/}{German Weather Data}, provided by the \href{https://www.dwd.de/DE/Home/home_node.html}{Deutscher Wetterdienst (German Weather Service)}, was used, to predict the COVID-19 case fatality rate using outside air temperature and time since outbreak. A simple custom model was used to recreate the actual numbers and show, that COVID-19 in Germany might have been much worse, had the breakout been a couple of months earlier.
 
 \end{abstract}
 
 \section{Introduction}
 \label{sec:introduction}
 
-The pandemic caused by SARS-CoV-2 and the accompanying disease COVID-19 is clearly one of if not the largest worldwide crisis since the second world war. The virus originated in Wuhan, China in late 2019 and then quickly spread over the entire world, with the first infection in Germany recorded by the RKI on January 2nd 2020. The first wave then followed in March 2020~\cite{rki_2022}.  
+The pandemic caused by SARS-CoV-2 and the accompanying disease COVID-19 is clearly one of if not the largest worldwide crisis since the second world war. The virus originated in Wuhan, China in late 2019 and then quickly spread over the entire world, with the first German infection recorded by the RKI on the second of January 2020. The first wave then followed in March 2020~\cite{rki_2022}.  
 
 Obviously the development of a pandemic depends on many factors, but a recurring theme seems to be, that cases and case fatality rates are lower in summer, most likely due to higher temperatures. Therefore, people spend more time outside where aerosol transmission is harder, and as such fewer people get infected. And the ones that do, do not get quite as sick, as the dose of virus they received is smaller. Pujadas et al.~\cite{pujadas_chaudhry_mcbride_richter_zhao_wajnberg_nadkarni_glicksberg_houldsworth_cordon-cardo_et_al._2020} showed, that viral load in the blood is an indicator for the risk of death.
 
@@ -65,14 +65,14 @@ So in this work we will see, how well case fatality rate can be predicted from o
 
 \section{About the data}
 
-For this task two sources of data have been used: For one this is the official German COVID-19~\cite{rki_2022} data as provided by the Robert Koch Institute, which is the German authority that is officially responsible for tracking the pandemic, backed by the German Bundesministerium für Gesundheit (federal Ministry for health). The data is supplied as a \texttt{csv}-file. The temperature data~\cite{dwd_2022} for Germany has been retrieved from the Deutscher Wetterdienst (German weather service), which is the official authority for weather in Germany, backed by the German Bundesministerium für Digitales und Verkehr (federal Ministry of digital matters and health). The data is supplied as several \texttt{zip}-files containing \texttt{csv}-files, that have been combined into one dataset.
+For this task two sources of data have been used: For one this is the official German COVID-19~\cite{rki_2022} data as provided by the Robert Koch Institut, which is the German authority that is officially responsible for tracking the pandemic, backed by the German Bundesministerium für Gesundheit (federal ministry for health). The data is supplied as a \texttt{csv}-file. The temperature data~\cite{dwd_2022} for Germany has been retrieved from the Deutscher Wetterdienst (German weather service), which is the official authority for weather in Germany, backed by the German Bundesministerium für Digitales und Verkehr (federal ministry of digital matters and health). The data is supplied as several \texttt{zip}-files containing \texttt{csv}-files, that have been combined into one dataset.
 
-Looking at the two datasets (case fatality rate and air temperature) next to each other it is immediately obvious, that there seems to be a negative correlation between them. High temperatures go with lower case fatality rates and vice versa. A possible explanation for this has already been given in section \ref{sec:introduction}. Another thing to note, is that the case fatality rate is generally decreasing, which is likely due to medical advances and increasing immunity in the population.
+Looking at the two datasets (case fatality rate and air temperature) next to each other it is immediately obvious, that there seems to be a negative correlation between them. High temperatures go with lower case fatality rates and vice versa. A possible explanation for this has already been given in section \ref{sec:introduction}. Another thing to note is, that the case fatality rate is generally decreasing, which is likely due to medical advances and increasing immunity in the population.
 
 \section{Modelling case fatality rate}
 \label{sec:modelling}
 
-This section will discuss the model choice and provide a plot, that demonstrate model performance.
+This section will discuss the model choice and provide a plot, that demonstrates model performance.
 
 \subsection{The model}
 
@@ -89,7 +89,7 @@ As the model for this problem, a multiplicative model of an exponential and a si
   \item $\Delta$ is the day of the peak of the case fatality rate during the first wave.
 \end{itemize}
 
-Note, that $\Delta$ is mathematically unnecessary as it can be completely absorbed in $a$, and only serves to shift the data to a fixed location and thus make the parameters more interpretable. $t$ and $\vartheta$ are the inputs, $a, b, c, d$ are learned and $\Delta$ is fixed.
+Note, that $\Delta$ is mathematically unnecessary as it can be completely absorbed into $a$, and only serves to shift the data to a fixed location and thus make the parameters more interpretable. $t$ and $\vartheta$ are the inputs, $a, b, c, d$ are learned and $\Delta$ is fixed.
 
 This model has several advantages, compared to a simple linear model like \begin{equation}
   a \cdot t + b \cdot \vartheta + c.
@@ -132,7 +132,7 @@ A scenario like this has been calculated for up to one year before the actual ou
 \begin{figure}[hbt!]
   \begin{center}
     \includegraphics{../fig/CfrTimeseries.pdf}
-    \caption{Predicted scenarios for peak to one year before April 2020. The actual case fatality rate is shown in black. The predictions are color-coded by the season, their beginning falls into. The background is made up of scenarios for every individual day.}
+    \caption{Predicted scenarios for peak up to one year before April 2020. The actual case fatality rate is shown in black. The predictions are color-coded by the season, their beginning falls into. The background is made up of scenarios for every individual day.}
     \label{fig:cfr_timeseries}
   \end{center}
 \end{figure}
@@ -148,7 +148,7 @@ A scenario like this has been calculated for up to one year before the actual ou
 \section{Caveats}
 \label{sec:caveats}
 
-Obviously a pandemic is a very complex matter and cannot be described sufficiently well by just time since outbreak and outside air temperature. There are many other factors, that play a role in that, such as the wearing of facemasks, vaccination (which is somewhat accounted for in the decay over time) and the arising of different variants, such as the recent Omicron variant. As such these predicted scenarios might be far off. Also, the case fatality rate should not be confused with the number of deaths, since a higher number of deaths would lead to a stronger political reaction, which in turn would reduce the number of new infections. 
+Obviously a pandemic is a very complex matter and cannot be described sufficiently well by just time since outbreak and outside air temperature. There are many other factors, that play a role in that, such as the wearing of facemasks, vaccination (which is somewhat accounted for in the decay over time) and the arising of different variants, such as the recent Omicron variant. As such these predicted scenarios might be far off. Also, the case fatality rate should not be confused with the number of deaths, since a higher number of deaths would likely lead to a stronger political reaction, which in turn would reduce the number of new infections. 
 
 On the other hand the model's predictions on past data are quite reasonable and there exists a convincing explanation for why things get predicted as they do as well as why the model is set up as it is (see sections \ref{sec:introduction} and \ref{sec:modelling}).
 
