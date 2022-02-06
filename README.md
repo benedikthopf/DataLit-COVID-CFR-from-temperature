@@ -7,7 +7,7 @@ Running these notebooks requires [`Python 3`](https://www.python.org/) and [`Jup
  - [`numpy`](https://numpy.org/)
  - [`scipy`](https://scipy.org/)
  - [`pandas`](https://pandas.pydata.org/)
- - [`matplotlib`](https://matplotlib.org/)
+ - [`matplotlib`](https://matplotlib.org/) (tested with version 3.5.1, an older version caused some problem with the heatmap plot)
  - [`tueplots`](https://pypi.org/project/tueplots/)
  - [`tqdm`](https://pypi.org/project/tqdm/)
  - [`beutifulsoup4`](https://pypi.org/project/beautifulsoup4/)
